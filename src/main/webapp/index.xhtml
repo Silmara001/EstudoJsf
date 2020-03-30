@@ -1,20 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html >
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+>
 
 <h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<title>Teste JSF</title>
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<!-- <h:outputStylesheet library="css" name="style1.css" /> -->
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 </h:head>
-<h:body>
-	<h:outputLabel>Teste</h:outputLabel>
-	<h:form>
-		<h:inputText value="#{controllerTest.nome}" />
-		<h:commandButton value="click" action="#{controllerTest.doAction()}" />
-	</h:form>
 
+<h:body>
+   	<p:panel id="basic" styleClass="base">
+		<div class="menu" >
+		 
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box" style="margin-top:30px;">
+		        	<i class="pi pi-refresh" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white;">Atualizar</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-calendar" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white;">Agenda</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-plus-circle" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white;">Novo</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-th-large" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white;">Alocações</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-sitemap" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white; ">Gestão</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-list" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white; ">Planejamento</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-upload" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white;">Importação</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-copy" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white;">Demandas</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-ticket" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white;">Reembolso</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-check-circle" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white;">Aprovações</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-chart-bar" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white;">Relatórios</p>
+		        </div>
+			</h:commandLink>
+		
+			<h:commandLink styleClass="menuLink" rendered ="true">
+		    	<div class="box">
+		        	<i class="pi pi-sign-out" onclick="" style="font-size: 30px; color:white;"/>
+		        	<p style="font-size:10px; color:white;">Sair</p>
+		        </div>
+			</h:commandLink>
+		</div> 
+
+		<div class="header">
+			<h:outputLabel style="margin-left:100px; font-size:18px; white-space: nowrap;">nome.usuario Data Atual: Horario Atual: Inicio: Trabalhado: (%)</h:outputLabel>
+		</div>
+		<div class="content">
+		  	<h:form>
+			    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+			 
+			    <p:panel id="basic">
+			        <h:form>
+					    <p:outputPanel style="" deferred="true">
+					    	 <h:panelGrid columns="2" cellpadding="0" style="background-color: ;">
+					    	 	<h:outputText value="Tempo disponivel destinado a atividades: " style="font-size:16px;"/>
+					        	<h:outputText value="Nota de alocação: " style="font-size:16px;"/>
+					        	<h:outputText value="Tempo disponivel destinado a tarefas: " style="font-size:16px;"/>
+					        	<h:outputText value="Nota de desempenho: " style="font-size:16px;"/>
+					        	<h:outputText value="Tempo Livre: " style="font-size:16px;"/>
+					        </h:panelGrid>
+					    </p:outputPanel>
+					 
+					    <div style="background-color:black; margin-top:10px; margin-bottom:10px; ">
+					    	<h:commandLink>
+					    		<h:outputText value="Nenhuma atividade esta sendo trabalhada no momento!" style="color:white; "/>
+					        	<i class="pi pi-plus-circle" onclick="" style="font-size: 30px; color:white;"/>
+							</h:commandLink>
+					    </div>
+					    
+					    <p:panel id="toggleable" header="Filtro" toggleable="true" toggleSpeed="500" collapsed="true" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+					 		 <h:form>
+						         <h:panelGrid columns="8" cellpadding="4" style="margin-left:30px; margin-right:30px;">
+						           	<p:outputLabel value="Cliente" style="font-size:14px;"/>
+			       					<h:inputText value="" style="font-size:14px;"/>
+			       					
+			       					<p:outputLabel value="Cód. Demanda" style="font-size:14px;"/>
+			       					<h:inputText value="" style="font-size:14px;"/>
+			       					
+			       					<p:outputLabel value="Cód. Tarefa" style="font-size:14px;"/>
+			       					<h:inputText value="" style="font-size:14px;"/>
+			       					
+			       					<p:outputLabel value="Ordenar por:" style="font-size:14px;"/>
+							        <p:selectOneMenu id="console" style="width:125px; font-size:14px;">
+							            <f:selectItem itemLabel="Cliente" itemValue="" style="font-size:14px;" />
+							            <f:selectItem itemLabel="Vencimento" itemValue="" style="font-size:14px;"/>
+							            <f:selectItem itemLabel="Cod.Demanda" itemValue="" style="font-size:14px;"/>
+							            <f:selectItem itemLabel="Cod. Tarefa" itemValue="" style="font-size:14px;"/>
+							        </p:selectOneMenu>
+							         
+							        <p:outputLabel value="Tipo de Ordenação::" style="font-size:14px;"/>
+							        <p:selectOneMenu  style="width:125px; font-size:14px;">
+							            <f:selectItem itemLabel="Crescente" itemValue="" style="font-size:14px;" />
+							            <f:selectItem itemLabel="Decrescente" itemValue="" style="font-size:14px;"/>
+							        </p:selectOneMenu>
+						        
+			       					<h:commandButton value="Buscar" style="font-size:14px;"/>
+			       					<h:commandButton value="Limpar" style="font-size:14px;"/>
+			       					
+			       				</h:panelGrid>
+			       			</h:form>
+					    </p:panel>
+					    
+					    			    
+					    <p:outputPanel deferred="true" >
+					    	<h4>Tarefas</h4>
+							<div class="p-grid" >
+							    <div class="p-col">
+							        <div class="boxClassTarefa">			        
+								        <h:outputText styleClass="classTarefa" value="Atrasadas (#{qtdAtrasadas})" />
+									   							        
+								    </div>
+							    </div>
+							    <div class="p-col">
+							        <div class="boxClassTarefa">
+										<h:outputText styleClass="classTarefa" value="Planejadas (#{qtdPlanejadas})" />
+									</div>
+							    </div>
+							    <div class="p-col">
+							        <div class="boxClassTarefa">
+										<h:outputText styleClass="classTarefa" value="Imediatas (#{qtdImediatas})" />
+									</div>
+							    </div>
+							</div>
+					    </p:outputPanel>
+					    
+					</h:form>
+			    </p:panel>	
+			    
+			</h:form>
+		</div>
+	</p:panel>
 </h:body>
 </html>
