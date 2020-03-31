@@ -10,16 +10,201 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<title>Teste JSF</title>
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<!-- <link type="text/css" rel="stylesheet" href="css/style.css" /> -->
 	<!-- <h:outputStylesheet library="css" name="style1.css" /> -->
 	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 </h:head>
 
 <h:body>
-   	<p:panel id="basic" styleClass="base">
+<style>
+	 *{
+    	margin:0px;
+    }
+    
+    .base{
+    	margin: 0;
+    	/*background-color:Orange;*/
+    	position:absolute;
+    	width:100%;
+    	height:100%;
+    	padding: 0;
+    }
+    
+    .ui-panel{
+    	padding:0;
+    }
+    
+    .ui-corner-all{
+    	border:0;
+    }
+    
+    .ui-panel .ui-panel-content{
+    	border: 0;
+    	padding:0;
+    	margin:0;
+    }    
+    
+    .header{
+	   	background-color: #000000; 
+	   	width:100%; 
+	   	height:25px; 
+	   	color:white;
+    }    
+    .content{
+    	margin-left:75px;
+    	background-color:black;
+    }
+    
+    .ui-panel .ui-panel-titlebar{
+    	margin-left:30px;
+    	margin-right:30px;
+    	padding:0;
+    	font-size: 16px;
+   	    border: none;
+   	    border-radius: 0;
+	}
+    .ui-panel .ui-panel-titlebar-icon{
+    	margin-top:0;
+    }
+    
+    .ui-widget-header {/*alteração no filtro*/
+    	color: #333333;
+    	font-weight: bold;
+    	text-align: right;
+	}
+/*-----------------------------------Menu--------------------------------------*/	
+	 .menu {
+		width:75px;
+		float:left;
+		background-color: #000000;
+		position: absolute;
+		overflow:hidden
+    }    
+    
+    .box{
+    	width:70px;
+    	margin-top:6px;
+    	margin-bottom:6px;
+    	text-align:center; 
+    }
+    
+   	.menuItem{
+		background-color:black;
+		width:75px;
+	
+	}
+	
+	.ui-menu{
+		width:75px;
+		
+	}
+	
+	.ui-menu.ui-widget{
+		min-width: 75px;
+		padding: 0;
+		background-color: black;
+		border-radius: 0;
+	}
+	
+	.ui-menuitem-text{
+		text-align:center;
+	}
+	
+	.ui-menu.ui-widget li > .ui-menuitem-link{
+		padding: 0;
+		width: 75px;
+		border-width: 0;
+	}
+	
+	.ui-menu.ui-widget .ui-menuitem-link .ui-menuitem-text{
+		margin: 0;
+	}
+	
+	.ui-menu .ui-menuitem-text {
+		float: none;
+	}
+	
+</style>
+
+   	<p:panel styleClass="base">
 		<div class="menu" >
-		 
-			<h:commandLink styleClass="menuLink" rendered ="true">
+			<h:form>  
+			    <p:growl id="messages" showDetail="false"/>
+			 
+			    <p:menu styleClass="Menu">
+			            <p:menuitem styleClass="menuItem" rendered="true" action="#{menuView.save}" update="messages">
+			            	<div class="box">
+			            		<i class="pi pi-refresh" style="font-size: 30px; color:white;"/>
+		        				<p style="font-size:10px; color:white;">Atualizar</p>
+			            	</div>
+			            </p:menuitem>
+			            <p:menuitem styleClass="menuItem" action="#{menuView.update}" update="messages"> 
+			            	<div class="box">
+			            		<i class="pi pi-calendar" style="font-size: 30px; color:white;"/>
+		        				<p style="font-size:10px; color:white;">Agenda</p>
+		        			</div>
+			            </p:menuitem>
+			            <p:menuitem styleClass="menuItem" action="#{menuView.update}" update="messages">
+				            <div class="box">
+				            	<i class="pi pi-plus-circle" style="font-size: 30px; color:white;"/>
+			        			<p style="font-size:10px; color:white;">Novo</p>
+			        		</div>
+			            </p:menuitem>
+			            <p:menuitem styleClass="menuItem" action="#{menuView.update}" update="messages">
+			            	<div class="box">
+			            		<i class="pi pi-th-large" style="font-size: 30px; color:white;"/>
+		        				<p style="font-size:10px; color:white;">Alocações</p>
+		        			</div>
+			            </p:menuitem>
+			            <p:menuitem styleClass="menuItem" action="#{menuView.update}" update="messages">
+			            	<div class="box">
+				            	<i class="pi pi-sitemap" style="font-size: 30px; color:white;"/>
+			        			<p style="font-size:10px; color:white;">Gestão</p>
+			        		</div>
+			            </p:menuitem>
+			            <p:menuitem styleClass="menuItem" action="#{menuView.update}" update="messages">
+			            	<div class="box">
+				            	<i class="pi pi-list" style="font-size: 30px; color:white;"/>
+			        			<p style="font-size:10px; color:white;">Planejamento</p>
+			        		</div>
+			            </p:menuitem>
+			            <p:menuitem styleClass="menuItem" action="#{menuView.update}" update="messages">
+			            	<div class="box">
+				            	<i class="pi pi-upload" style="font-size: 30px; color:white;"/>
+			        			<p style="font-size:10px; color:white;">Importação</p>
+			        		</div>
+			            </p:menuitem>
+			            <p:menuitem styleClass="menuItem" action="#{menuView.update}" update="messages">
+			            	<div class="box">
+				            	<i class="pi pi-file" style="font-size: 30px; color:white;"/>
+			        			<p style="font-size:10px; color:white;">Demandas</p>
+			        		</div>
+			            </p:menuitem>
+			            <p:menuitem styleClass="menuItem" action="#{menuView.update}" update="messages">
+			            	<div class="box">
+				            	<i class="pi pi-ticket" style="font-size: 30px; color:white;"/>
+			        			<p style="font-size:10px; color:white;">Reembolso</p>
+			        		</div>
+			            </p:menuitem>
+			            <p:menuitem styleClass="menuItem" action="#{menuView.update}" update="messages">
+			            	<div class="box">
+				            	<i class="pi pi-chart-bar" style="font-size: 30px; color:white;"/>
+			        			<p style="font-size:10px; color:white;">Relatórios</p>
+			        		</div>
+			            </p:menuitem>
+			            <p:menuitem styleClass="menuItem" action="#{menuView.update}" update="messages">
+			            	<div class="box">
+				            	<i class="pi pi-sign-out" style="font-size: 30px; color:white;"/>
+			        			<p style="font-size:10px; color:white;">Sair</p>
+			        		</div>
+			            </p:menuitem>
+			        
+			    </p:menu>
+			</h:form>
+		
+		
+		 	<!-- 
+			<h:commandLink styleClass="menuLink" rendered ="${menuView.testEnable}" >
 		    	<div class="box" style="margin-top:30px;">
 		        	<i class="pi pi-refresh" onclick="" style="font-size: 30px; color:white;"/>
 		        	<p style="font-size:10px; color:white;">Atualizar</p>
@@ -102,85 +287,85 @@
 		        	<p style="font-size:10px; color:white;">Sair</p>
 		        </div>
 			</h:commandLink>
+			-->
 		</div> 
 
 		<div class="header">
-			<h:outputLabel style="margin-left:100px; font-size:18px; white-space: nowrap;">nome.usuario Data Atual: Horario Atual: Inicio: Trabalhado: (%)</h:outputLabel>
+			<h:outputLabel style="margin-left:100px; padding:5px ;font-size:16px; white-space: nowrap; ">nome.usuario Data Atual: Horario Atual: Inicio: Trabalhado: (%)</h:outputLabel>
 		</div>
 		<div class="content">
 		  	<h:form>
 			    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
 			 
-			    <p:panel id="basic">
+			    <p:panel styleClass="" >
 			        <h:form>
-					    <p:outputPanel style="" deferred="true">
+					    <p:outputPanel style="" deferred="true" >
+					    	<h:outputText styleClass="classTarefa"  style=" margin-left: 30px;" value="Tarefas" />
+					    	<p:separator style="margin-left: 30px; margin-right:30px;"/>
 					    	 <h:panelGrid columns="2" cellpadding="0" style="background-color: ;">
-					    	 	<h:outputText value="Tempo disponivel destinado a atividades: " style="font-size:16px;"/>
-					        	<h:outputText value="Nota de alocação: " style="font-size:16px;"/>
-					        	<h:outputText value="Tempo disponivel destinado a tarefas: " style="font-size:16px;"/>
-					        	<h:outputText value="Nota de desempenho: " style="font-size:16px;"/>
-					        	<h:outputText value="Tempo Livre: " style="font-size:16px;"/>
+					    	 	<h:outputText value="Tempo disponivel destinado a atividades: " style="font-size:16px; margin-left: 30px;"/>
+					        	<h:outputText value="Nota de alocação: " style="font-size:16px; margin-left: 30px;"/>
+					        	<h:outputText value="Tempo disponivel destinado a tarefas: " style="font-size:16px; margin-left: 30px;"/>
+					        	<h:outputText value="Nota de desempenho: " style="font-size:16px; margin-left: 30px;"/>
+					        	<h:outputText value="Tempo Livre: " style="font-size:16px; margin-left: 30px;"/>
 					        </h:panelGrid>
 					    </p:outputPanel>
 					 
-					    <div style="background-color:black; margin-top:10px; margin-bottom:10px; ">
+					    <div style="background-color:black; margin-top:10px; margin-bottom:10px; margin-left:30px; margin-right:30px;">
 					    	<h:commandLink>
-					    		<h:outputText value="Nenhuma atividade esta sendo trabalhada no momento!" style="color:white; "/>
+					    		<p style="font-size:20px; color:white; float:left;"> Nenhuma atividade esta sendo trabalhada no momento!</p>
 					        	<i class="pi pi-plus-circle" onclick="" style="font-size: 30px; color:white;"/>
 							</h:commandLink>
 					    </div>
 					    
-					    <p:panel id="toggleable" header="Filtro" toggleable="true" toggleSpeed="500" collapsed="true" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+					    <p:panel styleClass="filter" header="Filtro" toggleable="true" toggleSpeed="500" collapsed="true" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
 					 		 <h:form>
-						         <h:panelGrid columns="8" cellpadding="4" style="margin-left:30px; margin-right:30px;">
-						           	<p:outputLabel value="Cliente" style="font-size:14px;"/>
-			       					<h:inputText value="" style="font-size:14px;"/>
-			       					
-			       					<p:outputLabel value="Cód. Demanda" style="font-size:14px;"/>
-			       					<h:inputText value="" style="font-size:14px;"/>
-			       					
-			       					<p:outputLabel value="Cód. Tarefa" style="font-size:14px;"/>
-			       					<h:inputText value="" style="font-size:14px;"/>
-			       					
-			       					<p:outputLabel value="Ordenar por:" style="font-size:14px;"/>
-							        <p:selectOneMenu id="console" style="width:125px; font-size:14px;">
+						         <h:panelGrid columns="8" cellpadding="4" style="margin-left:30px; margin-right:30px; ">
+						         	<p:outputLabel value="Ordenar por:" style="font-size:14px;"/>
+							        <p:selectOneMenu id="console" style="width:125px; font-size:14px; width:60px;">
 							            <f:selectItem itemLabel="Cliente" itemValue="" style="font-size:14px;" />
 							            <f:selectItem itemLabel="Vencimento" itemValue="" style="font-size:14px;"/>
 							            <f:selectItem itemLabel="Cod.Demanda" itemValue="" style="font-size:14px;"/>
 							            <f:selectItem itemLabel="Cod. Tarefa" itemValue="" style="font-size:14px;"/>
 							        </p:selectOneMenu>
-							         
-							        <p:outputLabel value="Tipo de Ordenação::" style="font-size:14px;"/>
-							        <p:selectOneMenu  style="width:125px; font-size:14px;">
+							        
+						           	<p:outputLabel value="Cliente" style="font-size:14px;"/>
+			       					<h:inputText value="" style="font-size:14px; width:60px; height:12px;"/>
+			       					
+			       					<p:outputLabel value="Cód. Demanda" style="font-size:14px;"/>
+			       					<h:inputText value="" style="font-size:14px; width:40px; height:12px;"/>
+			       					
+			       					<p:outputLabel value="Cód. Tarefa" style="font-size:14px;"/>
+			       					<h:inputText value="" style="font-size:14px; width:40px; height:12px;"/>
+			       					
+							        <p:outputLabel value="Tipo de Ordenação:" style="font-size:14px; "/>
+							        <p:selectOneMenu  style="width:125px; font-size:14px; width:60px;">
 							            <f:selectItem itemLabel="Crescente" itemValue="" style="font-size:14px;" />
 							            <f:selectItem itemLabel="Decrescente" itemValue="" style="font-size:14px;"/>
 							        </p:selectOneMenu>
 						        
 			       					<h:commandButton value="Buscar" style="font-size:14px;"/>
 			       					<h:commandButton value="Limpar" style="font-size:14px;"/>
-			       					
-			       				</h:panelGrid>
+			       				</h:panelGrid>    				
 			       			</h:form>
 					    </p:panel>
-					    
-					    			    
+					       
 					    <p:outputPanel deferred="true" >
-					    	<h4>Tarefas</h4>
 							<div class="p-grid" >
 							    <div class="p-col">
 							        <div class="boxClassTarefa">			        
-								        <h:outputText styleClass="classTarefa" value="Atrasadas (#{qtdAtrasadas})" />
+								        <h:outputText styleClass="classTarefa"  style="margin-left: 30px;" value="Atrasadas (#{qtdAtrasadas})" />
 									   							        
 								    </div>
 							    </div>
 							    <div class="p-col">
 							        <div class="boxClassTarefa">
-										<h:outputText styleClass="classTarefa" value="Planejadas (#{qtdPlanejadas})" />
+										<h:outputText styleClass="classTarefa" style="margin-left: 30px;" value="Planejadas (#{qtdPlanejadas})" />
 									</div>
 							    </div>
 							    <div class="p-col">
 							        <div class="boxClassTarefa">
-										<h:outputText styleClass="classTarefa" value="Imediatas (#{qtdImediatas})" />
+										<h:outputText styleClass="classTarefa" style="margin-left: 30px;" value="Imediatas (#{qtdImediatas})" />
 									</div>
 							    </div>
 							</div>

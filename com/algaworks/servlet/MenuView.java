@@ -1,5 +1,7 @@
 package com.algaworks.servlet;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -13,23 +15,21 @@ import org.primefaces.model.menu.MenuModel;
 
 @Named
 @RequestScoped
-public class MenuView {
+public class MenuView implements Serializable{
     private MenuModel model;
-    private boolean testEnable = false; 
+    private boolean testEnable = true; 
     @PostConstruct
     public void init() {
-    	
-        model = new DefaultMenuModel();
+    	 model = new DefaultMenuModel();
  
         //First submenu
         DefaultSubMenu menu = DefaultSubMenu.builder()
-        		.label("Dynamic Menu")
+        		.label("")
                 .build();
  
         DefaultMenuItem item = DefaultMenuItem.builder()
                 .value("Atualizar")
                 .url("#")
-                .rendered(false)
                 .icon("pi pi-refresh")
                 .build();
         menu.getElements().add(item);
@@ -141,6 +141,6 @@ public class MenuView {
     public void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
-    }
+    }*/
     
 }

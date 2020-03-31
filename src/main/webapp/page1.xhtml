@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>Page1</title>
+	<!-- <link type="text/css" rel="stylesheet" href="css/style.css" /> -->
+	<!-- <h:outputStylesheet library="css" name="style1.css" /> -->
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+</h:head>
+
+<h:body>
+<style>
+    .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
+        text-align: center;
+    }
+ 
+    .customPanelGrid .ui-panelgrid-content {
+        align-items: center;
+    }
+</style>
+	<h3>Formulario</h3>
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="0" style="background-color: ;">
+		    <p:outputLabel value="Nome" />
+		    <p:inputText value="#{controllerTest.nome}"/>
+		 
+		    <p:outputLabel value="Email" />
+		    <p:inputText value="#{controllerTest.email}"/>
+		 
+		    <p:outputLabel value="Data de Nascimento" />
+		    <p:datePicker id="dataNasc" value="#{controllerTest.dataNasc}" showIcon="true" style="width:auto" />
+		 
+			<h:commandButton value="Salvar" action="#{controllerTest.goPage2()}"/>
+			<h:button value="Page 2" outcome="/page2.xhtml?parametro=#{controllerTest.nome}"/>
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
