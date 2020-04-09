@@ -1,20 +1,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:composite="http://java.sun.com/jsf/composite"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Page 2</title>
 </h:head>
 <h:body>
 	<f:metadata>
-		<f:viewParam name="Parametro" value="#{controllerTest.nome}"></f:viewParam>
+		<f:viewParam name="Parametro" value="#{controllerRequestTest.nome}"></f:viewParam>
 	</f:metadata>
-	
-	<p>Nome: #{controllerTest.nome}</p>
-	<p>Email: #{controllerTest.email}</p>
-	<p>Data de Nascimento: #{controllerTest.dataNasc}</p>
+
+	<h:form id="form-1">
+		<p:outputPanel id="panel-users">
+			<h:panelGroup rendered="#{controllerRequestTest.user.type eq 'ADM'}">
+			Usuario ADM
+			</h:panelGroup>
+
+			<h:panelGroup rendered="#{controllerRequestTest.user.type eq 'COMUM'}">
+			Usuario comum
+			</h:panelGroup>
+			seg
+			fdsg
+			sd
+			f
+			fdg
+			s
+		</p:outputPanel>
+	</h:form>
+
+	<h:form>
+
+		<p:commandButton update=":form-1:panel-users" action="#{controllerRequestTest.changeUserType}" value="mudar tipo do usuario" />
+
+		<p:selectOneMenu>
+			<f:selectItem label="1"  />
+			<f:selectItem label="2"  />
+			<p:ajax listener="#{controllerRequestTest.changeUserType}" update=":form-1:panel-users" />
+		</p:selectOneMenu>
+
+		<p>Nome: #{controllerRequestTest.nome}</p>
+		<p>Email: #{controllerRequestTest.email}</p>
+		<p>Data de Nascimento: #{controllerRequestTest.dataNasc}</p>
+	</h:form>
 </h:body>
 </html>

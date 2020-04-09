@@ -4,14 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.annotation.FacesConfig;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named
-@SessionScoped
-public class ControllerTest implements Serializable {
+@RequestScoped
+public class ControllerRequestTest implements Serializable {
 	private String nome;
 	private Date dataNasc;
 	private String email;
@@ -35,20 +37,11 @@ public class ControllerTest implements Serializable {
 		} else if ("nomeComum".equals(getNome())) {
 			setUser(banco.retornUserComum());
 		} else {
-			FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "Usuario nao existe",
-					"Usuario nao existe");
+			FacesMessage facesMessage = new FacesMessage("Usuario nao existe");
 			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 			return false;
 		}
 		return true;
-	}
-
-	public void changeUserType() {
-		if (user.getType().equals("ADM")) {
-			user.setType("COMUM");
-		} else {
-			user.setType("ADM");
-		}
 	}
 
 	public String goPage2() {
@@ -62,7 +55,14 @@ public class ControllerTest implements Serializable {
 			return null;
 		}
 	}
-
+	
+	public void changeUserType() {
+		if ("ADM".equals(user.getType())) {
+			user.setType("COMUM");
+		} else {
+			user.setType("ADM");
+		}
+	}
 	public String getNome() {
 		return nome;
 	}
